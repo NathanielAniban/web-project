@@ -1,2 +1,22 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
+
+ @keyframes marquee {
+          0% { transform: translateX(0); }
+          /* Scroll exactly one full copy of the content to the left */
+          100% { transform: translateX(-50%); } 
+}
+        
+.animate-marquee {
+    animation: marquee 40s linear infinite;
+}
+.carousel-track:hover .animate-marquee {
+    animation-play-state: paused;
+}
+
+.a4-page {
+    width: 210mm;
+    min-height: 275mm;
+    /* For screen display only, you might adjust this for print */
+    max-width: 100%; /* Ensure it's responsive on small screens */
+}
