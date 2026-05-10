@@ -17,7 +17,7 @@ function NavigationBar() {
   ];
 
   return (
-    <nav className="bg-white dark:bg-gray-800 text-gray-900 dark:text-white shadow-md transition-colors duration-300">
+    <nav className="relative bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors duration-300">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -66,7 +66,8 @@ function NavigationBar() {
             
             <button
             onClick={toggleTheme}
-            className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
+            className="p-2 rounded-lg hover:bg-gray-100 
+            dark:hover:bg-gray-700 transition-colors duration-200"
             aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
             >
             {theme === 'light' ? (
@@ -80,23 +81,28 @@ function NavigationBar() {
         </div>
 
         {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 border-t border-gray-200 dark:border-gray-700">
-            <ul className="flex flex-col space-y-3 pt-4">
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    className="block px-4 py-2 rounded-lg text-gray-900 dark:text-white hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-200"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+        <div
+          className={`md:hidden absolute left-0 right-0 top-full z-20 overflow-hidden rounded-b-2xl border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800 shadow-lg transition-all duration-300 ease-out 
+            ${
+            isMenuOpen
+              ? 'max-h-60 opacity-100 translate-y-0 py-4'
+              : 'max-h-0 opacity-0 invisible -translate-y-3 py-0 pointer-events-none'
+          }`}
+        >
+          <ul className="flex flex-col space-y-3 px-4">
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  className="block rounded-lg px-4 py-2 text-gray-900 dark:text-white hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-200"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </nav>
   )
