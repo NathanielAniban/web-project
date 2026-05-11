@@ -17,7 +17,7 @@ function NavigationBar() {
   ];
 
   return (
-    <nav className="relative bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors duration-300">
+    <nav className="sticky top-0 z-10 relative bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors duration-300">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}

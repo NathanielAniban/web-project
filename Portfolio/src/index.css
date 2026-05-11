@@ -20,3 +20,16 @@
     /* For screen display only, you might adjust this for print */
     max-width: 100%; /* Ensure it's responsive on small screens */
 }
+
+.animate-blink {
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 50% {
+    opacity: 1;
+    }
+    51%, 100% {
+    opacity: 0;
+    }
+}
