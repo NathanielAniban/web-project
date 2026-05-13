@@ -30,13 +30,31 @@ const accomplishments: Accomplishment[] = [
     tags: ["IT", "Technical", "Internship"],
     category: "Career"
   },
-  {
+   {
     id: 3,
     title: "Bachelor's Degree - Summa Cum Laude",
     organization: "AMA Computer College - Pasig, Philippines",
     date: "2021 - 2025",
     description: "Pursuing a degree in Information Technology, gaining knowledge in programming, networking, and database management.",
     tags: ["IT", "Technical", "Education"],
+    category: "Certification"
+  },
+  {
+   id: 4,
+   title: "AI Prompt Engineering Text to Image Competition",
+   organization: "AMA Computer College - Pasig, Philippines",
+   date: "Feb 2024",
+   description: "Participated in a competition focused on creating effective prompts for AI text-to-image generation, showcasing creativity and understanding of AI capabilities.",
+   tags: ["IT", "Technical", "Education", "Prompt Engineering", "AWS"],
+   category: "Certification"
+ },
+   {
+    id: 5,
+    title: "Generative AI - Exploring the World of AI Creativity.",
+    organization: "AMA Computer College - Pasig, Philippines",
+    date: "Aug 2023",
+    description: "Attended a seminar on generative AI, learning about cloud-based services and their applications in various industries.",
+    tags: ["IT", "Technical", "Education", "Alibaba Cloud"],
     category: "Certification"
   },
 ];
@@ -49,7 +67,7 @@ const AccomplishmentPage: React.FC = () => {
   const categories = ['All', 'Certification', 'Career'];
 
   return (
-    <div className='container max-w-6xl mx-auto px-4 py-10 sm:py-14 sm:px-6 lg:px-8'>
+    <div className='px-4 py-10 sm:py-14 sm:px-6 lg:px-8'>
       <div className="mx-auto">
         <header className="mb-10 text-center">
           <h1 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-teal-500 tracking-tight">Milestones & Wins</h1>

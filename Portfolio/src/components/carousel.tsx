@@ -33,7 +33,7 @@ const Carousel: React.FC = () => {
   const marqueeFrameworks = useMemo(() => [...Frameworks, ...Frameworks, ...Frameworks], []);
   
   return (
-    <section className="mx-auto w-full max-w-6xl px-4 py-10 sm:py-14 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="px-4 py-10 sm:py-14 sm:px-6 lg:px-8 overflow-hidden">
       <div className="mb-4 text-center">
         <span className="inline-flex rounded-full bg-teal-100 px-3 py-1 text-[10px] sm:text-xs font-semibold uppercase tracking-[0.24em] text-teal-700 dark:bg-teal-900/30 dark:text-teal-300">
           Featured Skills

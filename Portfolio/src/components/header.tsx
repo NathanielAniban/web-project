@@ -1,4 +1,4 @@
-import { ExternalLink, ArrowRight, } from 'lucide-react';
+import { ExternalLink, Download, } from 'lucide-react';
 import { FaFacebook , FaInstagram, FaLinkedin, FaGithub } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import TypingEffect from './typing-effect';
@@ -21,7 +21,7 @@ export function Header() {
               <div className="text-center md:text-left">
                 <p className="text-teal-500 font-medium tracking-wide">Hello there!</p>
                 <TypingEffect
-                  styleProp="text-3xl md:text-5xl font-bold mb-2"
+                  styleProp="text-3xl md:text-5xl font-bold mb-2 font-mono"
                   text="Nathaniel Aniban"
                   speed={50}
                   delay={3000}
@@ -29,26 +29,29 @@ export function Header() {
                   cursorBlink={true}
                   cursorType="_"
                 />
-                <p className="text-xl text-slate-500 dark:text-slate-400 mb-6">Full Stack Developer | Technical Support</p>
-                
-                {
-                  true &&
+                <p className="text-xl text-slate-500 dark:text-slate-400 mb-2 font-mono">Full Stack Developer | Technical Support</p>
+                <p className="text-slate-600 dark:text-slate-300 leading-7 mb-6">
+                  Building modern applications with clean structure, using AI to enhance user experience, and crafting polished interactions with responsive design.
+               </p>
+               
                   <div className="flex gap-4 justify-center md:justify-start mb-8">
                     <FaFacebook className="hover:text-teal-500 cursor-pointer transition" />
                     <FaInstagram className="hover:text-teal-500 cursor-pointer transition" />
                     <FaLinkedin className="hover:text-teal-500 cursor-pointer transition" />
                     <FaGithub className="hover:text-teal-500 cursor-pointer transition" />
                   </div>
-                }
+                
 
                 <div className="flex gap-4 justify-center md:justify-start">
-                  <button className="bg-teal-700 text-white text-xs md:text-base px-6 py-3 rounded-lg font-semibold hover:bg-teal-600 flex items-center gap-2">
+                  <a href='https://www.credly.com/users/nathaniel-aniban/badges'
+                    target='_blank'  
+                    className="bg-teal-700 text-white text-xs md:text-base px-6 py-3 rounded-lg font-semibold hover:bg-teal-600 flex items-center gap-2">
                     Visit My Credly <ExternalLink size={18} />
-                  </button>
-                  <button className="border border-slate-300 dark:border-slate-700 
+                  </a>
+                  <a href='#' className="border border-slate-300 dark:border-slate-700 
                   text-xs md:text-base px-6 py-3 rounded-lg font-semibold hover:bg-slate-200 dark:hover:bg-slate-800 flex items-center gap-2">
-                    Learn More <ArrowRight size={18} />
-                  </button>
+                    Download CV <Download size={18} />
+                  </a>
                 </div>
               </div>
           </header>

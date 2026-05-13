@@ -39,7 +39,7 @@ export function FrequentlyAskedQuestions() {
   };
 
   return (
-    <section className="max-w-5xl mx-auto w-full">
+    <section className="px-4 py-10 sm:py-14 sm:px-6 lg:px-8">
       <motion.h2 
         initial={{ opacity: 0, y: 20, scale: 0.8 }}
         whileInView={{ opacity: 1, y: 0, scale: 1 }}

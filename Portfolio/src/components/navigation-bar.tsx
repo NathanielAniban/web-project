@@ -1,111 +1,138 @@
-import { useState } from 'react';
-import { useDarkMode } from "./darkmode-button"
+import { useState, useEffect } from 'react';
+import { useDarkMode } from "./darkmode-button";
 import { Sun, Moon, Menu, X } from "lucide-react";
 
-function NavigationBar() {
-  const [theme, toggleTheme] = useDarkMode();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+const useNavigation = (navLinks: { href: string }[]) => {
+  const [activeLink, setActiveLink] = useState('home');
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+  const handleScroll = (href: string) => {
+    if (href === '#home') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setActiveLink('home');
+      return;
+    }
+
+    const element = document.querySelector(href);
+    if (element) {
+      const navHeight = 80; 
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+      window.scrollTo({
+        top: elementPosition - navHeight,
+        behavior: 'smooth'
+      });
+      setActiveLink(href.slice(1));
+    }
   };
 
-  const navLinks = [
-    { href: "#home", label: "Home" },
-    { href: "#about", label: "About" },
-    { href: "#contact", label: "Contact" },
-  ];
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveLink(entry.target.id);
+        });
+      },
+      { rootMargin: '-20% 0px -70% 0px' }
+    );
+
+    navLinks.forEach((link) => {
+      const el = document.querySelector(link.href);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, [navLinks]);
+
+  return { activeLink, handleScroll };
+};
+
+interface NavItemProps {
+  label: string;
+  isActive: boolean;
+  onClick: () => void;
+  mobile?: boolean;
+}
+
+export const NavItem = ({ label, isActive, onClick, mobile }: NavItemProps) => {
+  const baseStyles = mobile 
+    ? `w-full text-left px-4 py-3 rounded-lg transition-all ${isActive ? 'bg-teal-50 dark:bg-teal-900/20 text-teal-600 font-bold' : 'text-gray-600 dark:text-gray-300'}`
+    : `relative pb-1 text-sm font-medium transition-colors duration-300 cursor-pointer ${isActive ? 'text-teal-500' : 'text-gray-600 dark:text-gray-300 hover:text-teal-500'}`;
+
+  const underlineStyles = !mobile && `after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-teal-500 after:transition-all after:duration-300 ${isActive ? 'after:w-full' : 'after:w-0 hover:after:w-full'}`;
 
   return (
-    <nav className="sticky top-0 z-10 relative bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors duration-300">
-      <div className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <h1 className="text-2xl font-bold">Portfolio</h1>
+    <button onClick={onClick} className={`${baseStyles} ${underlineStyles}`}>
+      {label}
+    </button>
+  );
+};
 
-          {/* Desktop Menu */}
+const NAV_LINKS = [
+  { href: "#home", label: "Home" },
+  { href: "#about", label: "About" },
+  { href: "#projects", label: "Projects" },
+  { href: "#accomplishments", label: "Accomplishments" },
+  { href: "#faq", label: "FAQ" },
+  { href: "#contact", label: "Contact" },
+];
 
-        <div className='flex flex-row space-x-5'>
-           
-            <ul className="hidden md:flex space-x-8 items-center">
-                {navLinks.map((link) => (
-                <li key={link.href}>
-                    <a
-                    href={link.href}
-                    className="relative pb-1 text-gray-900 dark:text-white hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-200 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-500 dark:after:bg-blue-400 after:transition-all after:duration-300 hover:after:w-full"
-                    >
-                    {link.label}
-                    </a>
-                </li>
-                ))}
-            </ul>
+export default function NavigationBar() {
+  const [theme, toggleTheme] = useDarkMode();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { activeLink, handleScroll } = useNavigation(NAV_LINKS);
 
-            <button
-            onClick={toggleTheme}
-            className="hidden md:block p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
-            aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-            >
-            {theme === 'light' ? (
-                <Moon size={20} />
-            ) : (
-                <Sun size={20} />
-            )}
-            </button>
-        </div>        
-          
-        {/* Mobile Menu Toggle */}
-        <div className='block md:hidden flex flex-row space-x-5'>
-            <button
-                onClick={toggleMenu}
-                className="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
-                aria-label="Toggle menu"
-                aria-expanded={isMenuOpen}
-            >
-                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-            
-            <button
-            onClick={toggleTheme}
-            className="p-2 rounded-lg hover:bg-gray-100 
-            dark:hover:bg-gray-700 transition-colors duration-200"
-            aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-            >
-            {theme === 'light' ? (
-                <Moon size={20} />
-            ) : (
-                <Sun size={20} />
-            )}
-            </button>
+  const onLinkClick = (href: string) => {
+    handleScroll(href);
+    setIsMenuOpen(false);
+  };
+
+  return (
+    <nav className="sticky top-0 z-50 bg-gray-100 dark:bg-gray-800">
+      <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+        <div className='cursor-pointer' onClick={() => onLinkClick('#home')}>
+          <p className='text-sm dark:text-white font-medium'>Online Portfolio</p>
+          <h1 className="text-lg/3 dark:text-white font-bold">
+            Nathaniel Aniban
+          </h1>
         </div>
 
-        </div>
-
-        {/* Mobile Menu */}
-        <div
-          className={`md:hidden absolute left-0 right-0 top-full z-20 overflow-hidden rounded-b-2xl border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800 shadow-lg transition-all duration-300 ease-out 
-            ${
-            isMenuOpen
-              ? 'max-h-60 opacity-100 translate-y-0 py-4'
-              : 'max-h-0 opacity-0 invisible -translate-y-3 py-0 pointer-events-none'
-          }`}
-        >
-          <ul className="flex flex-col space-y-3 px-4">
-            {navLinks.map((link) => (
+        <div className="flex items-center space-x-5">
+          <ul className="hidden md:flex space-x-8">
+            {NAV_LINKS.map((link) => (
               <li key={link.href}>
-                <a
-                  href={link.href}
-                  className="block rounded-lg px-4 py-2 text-gray-900 dark:text-white hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-200"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {link.label}
-                </a>
+                <NavItem 
+                  {...link} 
+                  isActive={activeLink === link.href.slice(1)} 
+                  onClick={() => onLinkClick(link.href)} 
+                />
               </li>
             ))}
           </ul>
+
+          <button onClick={toggleTheme} className="p-2 rounded-lg transition transition-all duration-100 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+            {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
+          </button>
+
+          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden dark:text-white p-2 transition transition-all duration-100 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
       </div>
-    </nav>
-  )
-}
 
-export default NavigationBar
+      {/* Mobile Menu Overlay */}
+      <div className={`md:hidden absolute w-full bg-white dark:bg-gray-800 transition-all ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
+        <ul className="p-4 space-y-2">
+          {NAV_LINKS.map((link) => (
+            <li key={link.href}>
+              <NavItem 
+                {...link} 
+                mobile 
+                isActive={activeLink === link.href.slice(1)} 
+                onClick={() => onLinkClick(link.href)} 
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
+    </nav>
+  );
+}
