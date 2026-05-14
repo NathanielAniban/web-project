@@ -21,7 +21,7 @@ export function Header() {
               <div className="text-center md:text-left">
                 <p className="text-teal-500 font-medium tracking-wide">Hello there!</p>
                 <TypingEffect
-                  styleProp="text-3xl md:text-5xl font-bold mb-2 font-mono"
+                  styleProp="text-2xl md:text-5xl font-bold mb-2 font-mono"
                   text="Nathaniel Aniban"
                   speed={50}
                   delay={3000}
@@ -29,7 +29,7 @@ export function Header() {
                   cursorBlink={true}
                   cursorType="_"
                 />
-                <p className="text-xl text-slate-500 dark:text-slate-400 mb-2 font-mono">Full Stack Developer | Technical Support</p>
+                <p className="text-sm md:text-xl text-slate-500 dark:text-slate-400 mb-2 font-mono">Full Stack Developer | Technical Support</p>
                 <p className="text-slate-600 dark:text-slate-300 leading-7 mb-6">
                   Building modern applications with clean structure, using AI to enhance user experience, and crafting polished interactions with responsive design.
                </p>
