@@ -3,6 +3,7 @@ import { FaFacebook , FaInstagram, FaLinkedin, FaGithub } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import TypingEffect from './typing-effect';
 import myPortfolio from '../assets/my-portfolio.pdf';
+import FormalPhoto from '../assets/formal-photo.png';
 
 export function Header() {
     return(
@@ -15,7 +16,7 @@ export function Header() {
               >
                 <div className="w-48 h-48 hover:scale-105 rounded-full border-4 
                 border-teal-500 overflow-hidden shadow-2xl transition transition-all duration-300">
-                  <img src="https://naniban-portfolio.vercel.app/assets/Formal-photo-CtRwKe1E.jpg" alt="Nathaniel" className="w-full h-full object-cover" />
+                  <img src={FormalPhoto} alt="Nathaniel" className="w-full h-full object-cover" />
                 </div>
               </motion.div>
 
