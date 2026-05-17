@@ -1,4 +1,7 @@
 import { motion } from 'framer-motion';
+import AthleticMMA from '../assets/athletic-mma.png';
+import ChatApp from '../assets/chat-app.png';
+import AuthenticationLogin from '../assets/login-form.png';
 
 interface Project {
   id: number;
@@ -14,7 +17,7 @@ const projects: Project[] = [
     id: 1,
     title: "Athletic MMA Landing Page",
     description: "A modern e-commerce solution for fitness enthusiasts with responsive design and smooth animations.",
-    image: "https://naniban-portfolio.vercel.app/assets/athletic-mma-background-CzG_p0TO.png",
+    image: AthleticMMA,
     tags: ["React", "Tailwind CSS", "Framer Motion"],
     link: "https://github.com/NathanielAniban/AthleticMMA",
 
@@ -23,7 +26,7 @@ const projects: Project[] = [
     id: 2,
     title: "Chat Application",
     description: "A real-time messaging application with a clean and intuitive user interface.",
-    image: "https://naniban-portfolio.vercel.app/assets/chatapp-background-LcMOcUNA.png",
+    image: ChatApp,
     tags: ["React", "Firebase", "Node.js"],
     link: "https://chatapp-chi-three.vercel.app/",
   },
@@ -31,7 +34,7 @@ const projects: Project[] = [
     id: 3,
     title: "Authentication System",
     description: "A custom authentication solution with secure login and registration features.",
-    image: "https://naniban-portfolio.vercel.app/assets/Authentication-Login-Background-BHBEDr89.png",
+    image: AuthenticationLogin,
     tags: ["React", "Node.js", "Codeigniter"],
     link: "https://github.com/NathanielAniban/auth_w_security",
   },

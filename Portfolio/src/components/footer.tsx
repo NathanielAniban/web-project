@@ -9,10 +9,10 @@ const Footer: React.FC = () => {
   const NAV_OFFSET = 80;
 
   const socialLinks = [
-    { icon: FaFacebook, href: 'https://facebook.com', label: 'Facebook' },
-    { icon: FaInstagram, href: 'https://instagram.com', label: 'Instagram' },
-    { icon: FaLinkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-    { icon: FaGithub, href: 'https://github.com', label: 'GitHub' },
+    { icon: FaFacebook, href: 'https://www.facebook.com/n.aniban.dev', label: 'Facebook' },
+    { icon: FaInstagram, href: 'https://www.instagram.com/urMirr0r__', label: 'Instagram' },
+    { icon: FaLinkedin, href: 'https://www.linkedin.com/in/nathaniel-aniban-48643a287/', label: 'LinkedIn' },
+    { icon: FaGithub, href: 'https://github.com/NathanielAniban', label: 'GitHub' },
   ];
 
   const quickLinks = [

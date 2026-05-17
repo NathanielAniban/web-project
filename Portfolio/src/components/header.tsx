@@ -2,6 +2,7 @@ import { ExternalLink, Download, } from 'lucide-react';
 import { FaFacebook , FaInstagram, FaLinkedin, FaGithub } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import TypingEffect from './typing-effect';
+import myPortfolio from '../assets/my-portfolio.pdf';
 
 export function Header() {
     return(
@@ -35,10 +36,18 @@ export function Header() {
                </p>
                
                   <div className="flex gap-4 justify-center md:justify-start mb-8">
-                    <FaFacebook className="hover:text-teal-500 cursor-pointer transition" />
-                    <FaInstagram className="hover:text-teal-500 cursor-pointer transition" />
-                    <FaLinkedin className="hover:text-teal-500 cursor-pointer transition" />
-                    <FaGithub className="hover:text-teal-500 cursor-pointer transition" />
+                    <a href="https://www.facebook.com/n.aniban.dev" target="_blank" rel="noopener noreferrer">
+                      <FaFacebook className="hover:text-teal-500 cursor-pointer transition" />
+                    </a>
+                    <a href="https://www.instagram.com/urMirr0r__" target="_blank" rel="noopener noreferrer">
+                      <FaInstagram className="hover:text-teal-500 cursor-pointer transition" />
+                    </a>
+                    <a href="https://www.linkedin.com/in/nathaniel-aniban-48643a287/" target="_blank" rel="noopener noreferrer">
+                      <FaLinkedin className="hover:text-teal-500 cursor-pointer transition" />
+                    </a>
+                    <a href="https://github.com/NathanielAniban" target="_blank" rel="noopener noreferrer">
+                      <FaGithub className="hover:text-teal-500 cursor-pointer transition" />
+                    </a>
                   </div>
                 
 
@@ -48,7 +57,7 @@ export function Header() {
                     className="bg-teal-700 text-white text-xs md:text-base px-6 py-3 rounded-lg font-semibold hover:bg-teal-600 flex items-center gap-2">
                     Visit My Credly <ExternalLink size={18} />
                   </a>
-                  <a href='#' className="border border-slate-300 dark:border-slate-700 
+                  <a href={myPortfolio} target='_blank' className="border border-slate-300 dark:border-slate-700 
                   text-xs md:text-base px-6 py-3 rounded-lg font-semibold hover:bg-slate-200 dark:hover:bg-slate-800 flex items-center gap-2">
                     Download CV <Download size={18} />
                   </a>
